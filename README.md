@@ -7,6 +7,7 @@
 - docker-compose up -d
 - npm run dev
 - ./vendor/bin/sail artisan storage:link
+- ./vendor/bin/sail artisan migrate
 
 That's it :)
 
