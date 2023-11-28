@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['splade'])->group(function () {
-    Route::get('/', fn () => view('home'))->name('home');
-    Route::get('/docs', fn () => view('docs'))->name('docs');
+    Route::get('/', fn() => view('home'))->name('home');
+
+    Route::group(['prefix' => 'files'], function () {
+        Route::get('/', [FileController::class, 'index'])->name('files.index');
+        Route::get('/create', [FileController::class, 'create'])->name('files.create');
+        Route::post('/store', [FileController::class, 'store'])->name('files.store');
+        Route::get('/edit/{file}', [FileController::class, 'edit'])->name('files.edit');
+        Route::get('/download/{file}', [FileController::class, 'download'])->name('files.download');
+        Route::post('/update/{file}', [FileController::class, 'update'])->name('files.update');
+        Route::delete('/destroy/{file}', [FileController::class, 'destroy'])->name('files.destroy');
+    });
 
     // Registers routes to support the interactive components...
     Route::spladeWithVueBridge();

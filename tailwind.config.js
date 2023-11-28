@@ -19,4 +19,8 @@ export default {
     },
 
     plugins: [forms, typography],
+
+    safelist: [
+        'mb-4', 'mt-4', 'my-4',
+    ]
 };
