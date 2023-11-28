@@ -5,7 +5,7 @@
 - composer i
 - npm ci
 - docker-compose up -d
-- npm run dev
+- npm run build || npm run dev
 - ./vendor/bin/sail artisan storage:link
 - ./vendor/bin/sail artisan migrate
 
